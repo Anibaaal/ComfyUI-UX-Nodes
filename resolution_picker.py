@@ -44,7 +44,7 @@ class EasyResolutionPicker:
     RETURN_NAMES = ("width", "height", "resolution_str")
     FUNCTION = "calculate_resolution"
     OUTPUT_NODE = False
-    CATEGORY = "Utility"
+    CATEGORY = "UX Nodes"
 
     def calculate_resolution(self, aspect_ratio, orientation, length_type, side_length):
         aspect_ratios = {

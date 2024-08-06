@@ -27,7 +27,7 @@ class StepCalculator:
     RETURN_NAMES = ("calculated_steps", "start_at_step")
     FUNCTION = "calculate_steps"
     OUTPUT_NODE = False
-    CATEGORY = "Utility"
+    CATEGORY = "UX Nodes"
 
     def calculate_steps(self, steps, ratio):
         calculated_steps = round(steps / ratio)

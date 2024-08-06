@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-ux-nodes"
-description = "Nodes: Easy Resolution Picker, Step Calculator"
+description = "Nodes: Easy Resolution Picker, Step Calculator, Denoise Calculator"
 version = "1.0.0"
 license = {file = "LICENSE"}
 
