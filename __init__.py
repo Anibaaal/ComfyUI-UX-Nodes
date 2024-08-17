@@ -1,18 +1,16 @@
-from .resolution_picker import EasyResolutionPicker
-from .step_calculator import StepCalculator
-from .denoise_calculator import DenoiseCalculator
-
+from .nodes import EasyResolutionPicker, SmoothCurveMerger
+from .utils import UNETSave
 
 NODE_CLASS_MAPPINGS = {
     "EasyResolutionPicker": EasyResolutionPicker,
-    "StepCalculator": StepCalculator,
-    "DenoiseCalculator": DenoiseCalculator
+    "UNETSave": UNETSave,
+    "SmoothCurveMerger": SmoothCurveMerger
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "EasyResolutionPicker": "Easy Resolution Picker",
-    "StepCalculator": "Step Calculator",
-    "DenoiseCalculator": "Denoise Calculator"
+    "UNETSave": "Save Diffusion Model",
+    "SmoothCurveMerger": "Smooth Curve Merger"
 }
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
