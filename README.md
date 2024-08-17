@@ -10,6 +10,6 @@ I decided to share publicly as I develop nodes. New nodes will be added over tim
 
 Calculates width and height based on given aspect ratio, orientation and length of the short/long side.
 
-## Step Calculator & Denoise Calculator
+## Save Diffusion Model
 
-Same effect as 'steps' and 'start_at_step' parameters in the scheduler, it will run for the input step amount, the ratio will add steps to accomodate.
+Save only the diffusion model without packaged CLIP and VAE from the standard CheckpointSave node.
