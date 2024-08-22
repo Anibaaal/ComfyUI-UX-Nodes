@@ -1,15 +1,13 @@
-# ComfyUI UX Nodes
- 
-In progress collection of UX enhancement nodes made for personal use to improve my workflows ease of use.
-
-I decided to share publicly as I develop nodes. New nodes will be added over time.
-
 # Nodes
 
-## Easy Resolution Picker
+### Easy Resolution Picker
 
-Calculates width and height based on given aspect ratio, orientation and length of the short/long side.
+- Calculates width and height based on given aspect ratio, orientation and length of the short/long side.
 
-## Save Diffusion Model
+### Save Diffusion Model
 
-Save only the diffusion model without packaged CLIP and VAE from the standard CheckpointSave node.
+- Save only the diffusion model without packaged CLIP and VAE from the standard CheckpointSave node.
+
+### Checkpoint/UNET Loader BNB On the fly
+
+- Load any model with nf4/fp4 weights applied on the fly.
