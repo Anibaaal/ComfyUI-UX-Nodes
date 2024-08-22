@@ -37,12 +37,12 @@ class EasyResolutionPicker:
                     "min": 512,
                     "max": 3072,
                     "step": 2
-                })
+                }),
             },
         }
 
     RETURN_TYPES = ("INT", "INT", "STRING")
-    RETURN_NAMES = ("width", "height", "resolution_str")
+    RETURN_NAMES = ("width", "height", "resolution_string")
     FUNCTION = "calculate_resolution"
     OUTPUT_NODE = False
     CATEGORY = "UX Nodes"
@@ -81,38 +81,13 @@ class EasyResolutionPicker:
         resolution_str = f"{width}x{height}"
         self.resolution_str = resolution_str
 
-        # Update the node title with the resolution preview
-        self.NAME = f"Easy Resolution Picker ({resolution_str})"
-        
+        # Return calculated values
         return width, height, resolution_str
 
-    @classmethod
-    def WEB_DIRECTORY(cls):
-        return {
-            "html": """
-            <div id="resolution_display" style="margin-top: 10px; font-weight: bold; color: #333;"></div>
-            <script>
-                function updateResolutionDisplay(resolution) {
-                    document.getElementById('resolution_display').innerText = 'Final Resolution: ' + resolution;
-                }
-                window.addEventListener('DOMContentLoaded', function() {
-                    window.updateResolutionDisplay = updateResolutionDisplay;
-                });
-            </script>
-            """
-        }
-
-    def run(self, resolution_str):
-        return {
-            "ui": {"resolution_display": self.resolution_str},
-            "result": (self.resolution_str,)
-        }
 
 
-
-
-class SmoothCurveMerger:
-    NAME = "Smooth Curve Merger"
+class SmoothCurveMergerFlux:
+    NAME = "Smooth Curve Merger Flux"
     
     def __init__(self):
         pass

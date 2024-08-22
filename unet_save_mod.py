@@ -1,4 +1,3 @@
-import torch
 from enum import Enum
 import logging
 
@@ -39,6 +38,7 @@ import torch
 import folder_paths
 import json
 import os
+import safetensors
 
 from comfy.cli_args import args
 
@@ -49,6 +49,9 @@ def save_diffusion_model(output_path, model, metadata=None, extra_keys={}):
 
     # Get the state dictionary for saving, excluding CLIP and VAE
     sd = model.model.state_dict_for_saving()
+
+    # Clean up the state dictionary keys by removing the "model.diffusion_model." prefix
+    sd = {k.replace("model.diffusion_model.", ""): v for k, v in sd.items()}
 
     # Add any extra keys to the state dictionary
     for k in extra_keys:
@@ -62,6 +65,7 @@ def save_diffusion_model(output_path, model, metadata=None, extra_keys={}):
 
     # Save the state dictionary to the specified output path
     comfy.utils.save_torch_file(sd, output_path, metadata=metadata)
+
 
 
 def save_model(model, filename_prefix=None, output_dir=None, prompt=None, extra_pnginfo=None):
@@ -121,7 +125,7 @@ def save_model(model, filename_prefix=None, output_dir=None, prompt=None, extra_
     save_diffusion_model(output_checkpoint, model, metadata=metadata, extra_keys=extra_keys)
 
 
-class UNETSave:
+class ModelSave:
     NAME = "Save Diffusion Model"
     def __init__(self):
         self.output_dir = folder_paths.get_output_directory()
@@ -129,7 +133,7 @@ class UNETSave:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "model": ("MODEL",),
-                              "filename_prefix": ("STRING", {"default": "checkpoints/ComfyUI"}),},
+                              "filename_prefix": ("STRING", {"default": "unet_output/ComfyUI"}),},
                 "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"},}
     RETURN_TYPES = ()
     FUNCTION = "save"
