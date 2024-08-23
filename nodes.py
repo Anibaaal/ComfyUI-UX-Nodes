@@ -34,15 +34,11 @@ class EasyResolutionPicker:
                     ], { "default": "Long Side" }),
                 "side_length": ("INT", {
                     "default": 1024,
-                    "min": 0,
-                    "max": 1000000,
-                    "step": 2
+                    "min": 0
                 }),
                 "other_side": ("INT", {
                     "default": 0,
-                    "min": 0,
-                    "max": 1000000,
-                    "step": 2
+                    "min": 0
                 }),
             },
         }
@@ -78,10 +74,6 @@ class EasyResolutionPicker:
             width, height = long_side, short_side
         else:
             width, height = short_side, long_side
-
-        # Ensure dimensions are divisible by 2
-        width = width - (width % 2)
-        height = height - (height % 2)
 
         # Generate resolution string
         resolution_str = f"{width}x{height}"
