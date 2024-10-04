@@ -2,7 +2,11 @@
 
 ### Easy Resolution Picker
 
-- Calculates width and height based on given aspect ratio, orientation and length of the short/long side.
+- Calculates width and height based on given aspect ratio, orientation and length of the short/long side or megapixels amount.
+
+### Flux Block Weight String
+
+- Sliders for each block of the Flux model, generates a block_vector string to be used with [Inspire Pack](https://github.com/ltdrdata/ComfyUI-Inspire-Pack) **Make LoRA Block Weight** node.
 
 ### Save Diffusion Model
 
