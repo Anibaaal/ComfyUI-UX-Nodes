@@ -16,10 +16,11 @@ class EasyResolutionPicker:
                     [
                         '1:1 (Square)', '5:4 (Standard)', '4:3 (Standard)', '3:2 (Classic)', '16:10 (Widescreen)',
                         '7:4 (IMAX)', '16:9 (HD)', '2:1 (Univisium)', '21:9 (Cinematic)', '2.35:1 (Anamorphic)',
-                        '2.39:1 (Anamorphic)', '3:1 (Ultra-Wide)'
+                        '2.39:1 (Anamorphic)', '3:1 (Ultra-Wide)', 'Custom'
                     ],
                     {"default": "16:9 (HD)"}
                 ),
+                "custom_aspect_ratio": ("STRING", {"default": "", "placeholder": "Enter aspect ratio as W:H"}),
                 "orientation": (['Horizontal', 'Vertical'], {"default": "Horizontal"}),
                 "length_type": (['Long Side', 'Short Side'], {"default": "Long Side"}),
                 "side_length": ("INT", {"default": 1024, "min": 1, "step": 1}),
@@ -33,9 +34,15 @@ class EasyResolutionPicker:
         }
 
     @staticmethod
-    def calculate_resolution(aspect_ratio, orientation, length_type, side_length, other_side, divisible_by, megapixels, use_megapixels):
-        # Aspect ratio parsing
-        ar_width, ar_height = map(int, aspect_ratio.split()[0].split(':'))
+    def calculate_resolution(aspect_ratio, custom_aspect_ratio, orientation, length_type, side_length, other_side, divisible_by, megapixels, use_megapixels):
+        # Parse aspect ratio, either from preset or custom input
+        if aspect_ratio == 'Custom' and custom_aspect_ratio:
+            try:
+                ar_width, ar_height = map(int, custom_aspect_ratio.split(':'))
+            except ValueError:
+                raise ValueError("Invalid custom aspect ratio. Use format W:H (e.g., 16:9).")
+        else:
+            ar_width, ar_height = map(int, aspect_ratio.split()[0].split(':'))
 
         # Calculate the other side based on the aspect ratio
         if length_type == 'Long Side':
@@ -68,7 +75,7 @@ class EasyResolutionPicker:
                 width = other_side
 
         # Generate the resolution string
-        resolution_str = f"{width}x{height} ({aspect_ratio}, {orientation}, {length_type})"
+        resolution_str = f"{width}x{height} ({aspect_ratio if aspect_ratio != 'Custom' else custom_aspect_ratio}, {orientation}, {length_type})"
 
         return width, height, resolution_str
 
