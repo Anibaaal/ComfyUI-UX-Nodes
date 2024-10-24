@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-ux-nodes"
-description = "Nodes: Easy Resolution Picker, Flux Block Weight String, Load Checkpoint BNB On the fly, Load UNET BNB On the fly"
-version = "1.0.4"
+description = "Nodes: Easy Resolution Picker, Model Merge SD3 Large, Flux Block Weight String, Load Checkpoint BNB On the fly, Load UNET BNB On the fly"
+version = "1.0.5"
 license = {file = "LICENSE"}
 
 [project.urls]
