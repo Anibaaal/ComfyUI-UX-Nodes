@@ -1,5 +1,4 @@
 from .nodes import EasyResolutionPicker, BlockLayerStringGenerator
-from .merging import ModelMergeSD3_Large
 
 NODE_CLASS_MAPPINGS = {
     "EasyResolutionPicker": EasyResolutionPicker,
