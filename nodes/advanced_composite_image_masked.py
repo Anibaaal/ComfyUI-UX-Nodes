@@ -93,8 +93,8 @@ class AdvancedCompositeImageMasked:
             crop_overlay = padded_overlay[:, :, crop_top:crop_bottom, crop_left:crop_right]
             crop_mask = padded_mask[:, :, crop_top:crop_bottom, crop_left:crop_right]
 
-            # Ensure mask is the same size as overlay
-            crop_mask = crop_mask.expand(crop_overlay.shape)
+            # Resize mask to match overlay dimensions
+            crop_mask = F.interpolate(crop_mask, size=(crop_overlay.shape[2], crop_overlay.shape[3]), mode="bilinear", align_corners=False)
 
             # Composite images
             base_crop = base[:, :, crop_top:crop_bottom, crop_left:crop_right]
